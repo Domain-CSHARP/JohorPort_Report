@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-03-12T20:11:21.9153401Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-11T01:52:19.5139983Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -34,9 +34,9 @@
         </QueryParameters>
         <CommandText>SELECT        SHIPPER, SQNO, LORRY, MDRIVER, ASSIGN_DATETIME, GATEIN_GATENO, GATEIN_DATETIME, GATEIN_JPGKEY, WEIGHTIN_WBNO, WEIGHTIN_DATETIME, WEIGHTIN_JPGKEY, WEIGHTOUT_WBNO, 
                          WEIGHTOUT_DATETIME, WEIGHTOUT_JPGKEY, TICKET, CONFIRM_GP, CONFIRM_GPUSER, CONFIRM_GPTIME, ACK_GP, ACK_GPUSER, ACK_GPTIME, GATEOUT_GATENO, GATEOUT_DATETIME, GATEOUT_JPGKEY, 
-                         VEP_STATUS, COMPLETED, PKKEY, DRIVER_ID, name as Company_Name
+                         VEP_STATUS, COMPLETED, PKKEY, DRIVER_ID, name as Company_Name, (WEIGHTOUT_DATETIME - WEIGHTIN_DATETIME)as Average_Weight_Time
 FROM            dbo.SHIPPER_SUB CROSS JOIN dbo.logo
-where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_DATETIME between @DateFrom and @DateTo</CommandText>
+where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_DATETIME between @DateFrom and @DateTo and COMPLETED = 1</CommandText>
       </Query>
       <Fields>
         <Field Name="SHIPPER">
@@ -155,6 +155,10 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
           <DataField>Company_Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Average_Weight_Time">
+          <DataField>Average_Weight_Time</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -167,6 +171,9 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
               <TablixColumns>
                 <TablixColumn>
                   <Width>0.58333in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -265,7 +272,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>TICKET</Value>
+                                  <Value>Ticket</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -295,7 +302,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>LORRY</Value>
+                                  <Value>Vehicle No</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -325,7 +332,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>ASSIGN DATETIME</Value>
+                                  <Value>Assign Date tIME</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -355,7 +362,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>GATEIN GATENO</Value>
+                                  <Value>Gate In No</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -387,7 +394,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>GATEIN DATETIME</Value>
+                                  <Value>Gate In Date Time</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -419,7 +426,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>WEIGHTIN WBNO</Value>
+                                  <Value>Weight In WB No</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -451,7 +458,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>WEIGHTIN DATETIME</Value>
+                                  <Value>Weight In Date Time</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -483,7 +490,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>WEIGHTOUT WBNO</Value>
+                                  <Value>Weight Out WB No</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -515,7 +522,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>WEIGHTOUT DATETIME</Value>
+                                  <Value>Weight Out Date Time</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -547,7 +554,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>CONFIRM GP</Value>
+                                  <Value>Gatepass Status</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -579,7 +586,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>CONFIRM GPUSER</Value>
+                                  <Value>Gatepass Actioned By</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -611,7 +618,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>CONFIRM GPTIME</Value>
+                                  <Value>Gatepass Actioned Date Time</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -643,7 +650,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>ACK GP</Value>
+                                  <Value>Acknowledge Status</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -675,7 +682,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>ACK GPUSER</Value>
+                                  <Value>Acknowledged By</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -707,7 +714,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>ACK GPTIME</Value>
+                                  <Value>Acknowledge Date Time</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -739,7 +746,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>GATEOUT GATENO</Value>
+                                  <Value>Gate Out No</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -771,7 +778,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>GATEOUT DATETIME</Value>
+                                  <Value>Gate Out Date Time</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -781,6 +788,38 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox39</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Average Weighing Time (Weight in - Weight Out)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1387,12 +1426,48 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Average_Weight_Time">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Average_Weight_Time.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>H:mm</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Average_Weight_Time</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -1426,7 +1501,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
             <DataSetName>DataSet1</DataSetName>
             <Top>1.63429in</Top>
             <Height>0.5in</Height>
-            <Width>17.58333in</Width>
+            <Width>18.58333in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1670,14 +1745,14 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.22797in</Height>
+        <Height>2.13429in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>17.66769in</Width>
+      <Width>18.58333in</Width>
       <Page>
         <PageFooter>
           <Height>0.01042in</Height>
@@ -1689,6 +1764,8 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
             </Border>
           </Style>
         </PageFooter>
+        <PageHeight>16.54in</PageHeight>
+        <PageWidth>11.69in</PageWidth>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
         <TopMargin>1in</TopMargin>

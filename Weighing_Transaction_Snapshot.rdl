@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-07T08:55:13.0576496Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-10T07:21:44.7416504Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -25,23 +25,24 @@
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@ticket">
-            <Value>=Parameters!ticket.Value</Value>
+          <QueryParameter Name="Ticket">
+            <Value>=Parameters!Ticket.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>select  a.ticket, a.lorry, b.FIRST, b.SECOND, ABS(FIRST-SECOND) as NETT_WEIGHT, c.acname as supplier_name, c.ptname as product_name, a.WEIGHTIN_WBNO, a.WEIGHTOUT_WBNO, a.WEIGHTIN_DATETIME, a.WEIGHTOUT_DATETIME,
+        <CommandText>select  a.Ticket, a.lorry, b.FIRST, b.SECOND, ABS(FIRST-SECOND) as NETT_WEIGHT, c.acname as supplier_name, c.ptname as product_name, a.WEIGHTIN_WBNO, a.WEIGHTOUT_WBNO, a.WEIGHTIN_DATETIME, a.WEIGHTOUT_DATETIME,
 weightin.jpg11 as weightin_jpg11, weightin.jpg12 as weightin_jpg12, weightin.jpg13 as weightin_jpg13, weightout.jpg11 as weightout_jpg11, weightout.jpg12 as weightout_jpg12, weightout.jpg13 as weightout_jpg13, d.name as company_name
 from shipper_sub as a left outer join
 jpgfile as weightin on a.WEIGHTIN_JPGKEY = weightin.pkkey left outer join 
 jpgfile as weightout on a.WEIGHTOUT_JPGKEY = weightout.PKKEY left outer join
-all_ticket as b on a.ticket = b.ticket left outer join
+all_ticket as b on a.Ticket = b.ticket left outer join
 shipper as c on a.SHIPPER = c.CODE CROSS join
 logo as d 
-where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</CommandText>
+where A.Ticket &lt;&gt; C.CODE and a.Ticket is not null and a.Ticket = @Ticket</CommandText>
       </Query>
       <Fields>
-        <Field Name="ticket">
-          <DataField>ticket</DataField>
+        <Field Name="Ticket">
+          <DataField>Ticket</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="lorry">
@@ -1021,14 +1022,14 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox41">
+                                          <Textbox Name="Ticket">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!ticket.Value</Value>
+                                                    <Value>=Fields!Ticket.Value</Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
                                                     </Style>
@@ -1037,7 +1038,7 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox41</rd:DefaultName>
+                                            <rd:DefaultName>Ticket</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -1330,7 +1331,7 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
                 <TablixMember>
                   <Group Name="Ticket">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!ticket.Value</GroupExpression>
+                      <GroupExpression>=Fields!Ticket.Value</GroupExpression>
                     </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
@@ -1381,7 +1382,6 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>company_name</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.48958in</Height>
               <Width>3.36458in</Width>
               <Style>
@@ -1409,7 +1409,6 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox24</rd:DefaultName>
-              <Top>0in</Top>
               <Left>3.74437in</Left>
               <Height>0.25903in</Height>
               <Width>0.80771in</Width>
@@ -1443,7 +1442,6 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox29</rd:DefaultName>
-              <Top>0in</Top>
               <Left>4.68541in</Left>
               <Height>0.25903in</Height>
               <Width>1.27292in</Width>
@@ -1515,9 +1513,9 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="ticket">
+    <ReportParameter Name="Ticket">
       <DataType>String</DataType>
-      <Prompt>ticket</Prompt>
+      <Prompt>Ticket</Prompt>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
@@ -1528,7 +1526,7 @@ where A.ticket &lt;&gt; C.CODE and a.ticket is not null and a.ticket = @ticket</
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>ticket</ParameterName>
+          <ParameterName>Ticket</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
