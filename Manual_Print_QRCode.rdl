@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-11T01:29:57.4192442Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-14T03:12:39.6827032Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -20,37 +20,6 @@
       <rd:DataSourceID>f8008e58-81bf-4325-95cb-2ee931dfd1f6</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet1">
-      <Query>
-        <DataSourceName>DataSource1</DataSourceName>
-        <CommandText>SELECT 
-  SHIPPER,
-  LORRY,
-  PKKEY,
-  SHIPPER + '=' + LORRY + '=' AS QRData
-FROM shipper_sub;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="SHIPPER">
-          <DataField>SHIPPER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="LORRY">
-          <DataField>LORRY</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PKKEY">
-          <DataField>PKKEY</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="QRData">
-          <DataField>QRData</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -74,7 +43,7 @@ FROM shipper_sub;</CommandText>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>1.38415in</Top>
+            <Top>1.39804in</Top>
             <Height>0.3125in</Height>
             <Width>1.84375in</Width>
             <Style>
@@ -106,7 +75,7 @@ FROM shipper_sub;</CommandText>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>1.94665in</Top>
+            <Top>1.96054in</Top>
             <Height>0.3125in</Height>
             <Width>1.84375in</Width>
             <ZIndex>1</ZIndex>
@@ -122,7 +91,7 @@ FROM shipper_sub;</CommandText>
           </Textbox>
           <Image Name="QRCode">
             <Source>External</Source>
-            <Value>="https://api.qrserver.com/v1/create-qr-code/?data=" &amp; Code.URLEncode(Fields!QRData.Value) &amp; "&amp;size=150x150"</Value>
+            <Value>="https://johorport.domainsb.com.my/API/GenerateQRCodeImage?data="&amp; Parameters!Mega_Booking_Code.Value &amp; "=" &amp; Parameters!Vehicle_No.Value &amp; "="</Value>
             <Sizing>Fit</Sizing>
             <Height>1.38415in</Height>
             <Width>1.84375in</Width>
@@ -133,14 +102,14 @@ FROM shipper_sub;</CommandText>
               </Border>
             </Style>
           </Image>
-          <Textbox Name="SHIPPER">
+          <Textbox Name="Mega_Booking_Code">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!SHIPPER.Value, "DataSet1")</Value>
+                    <Value>=Parameters!Mega_Booking_Code.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -149,8 +118,8 @@ FROM shipper_sub;</CommandText>
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>SHIPPER</rd:DefaultName>
-            <Top>1.72444in</Top>
+            <rd:DefaultName>Mega_Booking_Code</rd:DefaultName>
+            <Top>1.72443in</Top>
             <Height>0.25in</Height>
             <Width>1.84375in</Width>
             <ZIndex>3</ZIndex>
@@ -164,14 +133,14 @@ FROM shipper_sub;</CommandText>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="LORRY">
+          <Textbox Name="Vehicle_No">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!LORRY.Value, "DataSet1")</Value>
+                    <Value>=Parameters!Vehicle_No.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -180,8 +149,8 @@ FROM shipper_sub;</CommandText>
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>LORRY</rd:DefaultName>
-            <Top>2.27304in</Top>
+            <rd:DefaultName>Vehicle_No</rd:DefaultName>
+            <Top>2.28693in</Top>
             <Height>0.25in</Height>
             <Width>1.84375in</Width>
             <ZIndex>4</ZIndex>
@@ -196,7 +165,7 @@ FROM shipper_sub;</CommandText>
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.52304in</Height>
+        <Height>2.53693in</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -226,9 +195,13 @@ FROM shipper_sub;</CommandText>
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="PKKEY">
-      <DataType>Integer</DataType>
-      <Prompt>PKKEY</Prompt>
+    <ReportParameter Name="Mega_Booking_Code">
+      <DataType>String</DataType>
+      <Prompt>Mega_Booking_Code</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Vehicle_No">
+      <DataType>String</DataType>
+      <Prompt>Vehicle_No</Prompt>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
@@ -239,7 +212,12 @@ FROM shipper_sub;</CommandText>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>PKKEY</ParameterName>
+          <ParameterName>Mega_Booking_Code</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Vehicle_No</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

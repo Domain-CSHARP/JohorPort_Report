@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-11T01:52:19.5139983Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-17T03:37:16.2079149Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -1687,7 +1687,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!Print_By.Value</Value>
+                    <Value>=Parameters!PRINT_BY.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1776,15 +1776,16 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
   </ReportSections>
   <ReportParameters>
     <ReportParameter Name="DateFrom">
-      <DataType>String</DataType>
-      <Prompt>Date(From)</Prompt>
+      <DataType>DateTime</DataType>
+      <Prompt>Date (From) @[DATE -p dd/mm/yyyy -s false]</Prompt>
     </ReportParameter>
     <ReportParameter Name="DateTo">
-      <DataType>String</DataType>
-      <Prompt>Date(To)</Prompt>
+      <DataType>DateTime</DataType>
+      <Prompt>Date(To) @[DATE -p dd/mm/yyyy -s false]</Prompt>
     </ReportParameter>
-    <ReportParameter Name="Print_By">
+    <ReportParameter Name="PRINT_BY">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <Prompt>Print_By</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -1806,7 +1807,7 @@ where dbo.SHIPPER_SUB.SHIPPER &lt;&gt; dbo.logo.CODE and dbo.SHIPPER_SUB.ASSIGN_
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>Print_By</ParameterName>
+          <ParameterName>PRINT_BY</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

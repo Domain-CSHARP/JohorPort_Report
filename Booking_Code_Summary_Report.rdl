@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-11T01:47:02.3404731Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-17T03:36:51.5660302Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -310,7 +310,7 @@ where Booking_Code_Summary_Report.DATE between @DateFrom and @DateTo</CommandTex
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.88542in</Height>
+                  <Height>0.27084in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -698,7 +698,7 @@ where Booking_Code_Summary_Report.DATE between @DateFrom and @DateTo</CommandTex
             <DataSetName>DataSet1</DataSetName>
             <Top>4.42014in</Top>
             <Left>0cm</Left>
-            <Height>1.47917in</Height>
+            <Height>0.86459in</Height>
             <Width>7.50736in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -1054,7 +1054,6 @@ where Booking_Code_Summary_Report.DATE between @DateFrom and @DateTo</CommandTex
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
             <Top>1.44672in</Top>
-            <Left>0in</Left>
             <Height>2.83434in</Height>
             <Width>3.53125in</Width>
             <ZIndex>2</ZIndex>
@@ -1634,7 +1633,7 @@ where Booking_Code_Summary_Report.DATE between @DateFrom and @DateTo</CommandTex
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>5.89931in</Height>
+        <Height>5.28473in</Height>
         <Style>
           <Border>
             <Style>None</Style>
