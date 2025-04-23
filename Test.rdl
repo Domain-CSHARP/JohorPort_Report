@@ -9,205 +9,31 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-21T07:21:09.2957807Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-22T07:03:55.5404970Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="JBP">
-      <ConnectionProperties>
-        <DataProvider>SQL</DataProvider>
-        <ConnectString>server=OOI\MSSQLSERVER01;uid=sa;password=;database=JPB_UWS;TrustServerCertificate=True</ConnectString>
-        <IntegratedSecurity>true</IntegratedSecurity>
-      </ConnectionProperties>
+    <DataSource Name="JBP_UWS">
+      <DataSourceReference>/JPB_UWS</DataSourceReference>
       <rd:SecurityType>Integrated</rd:SecurityType>
       <rd:DataSourceID>a30d241a-0194-4ef3-b253-d46dff448a2f</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="WB1">
-      <Query>
-        <DataSourceName>JBP</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@TICKET">
-            <Value>=Parameters!Ticket.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>SELECT
-  WB.TICKET
-  ,WB.LORRY
-  ,WB.[DATE]
-  ,WB.SHIPPER
-  ,WB.STATUS
-  ,WB.CHIT_NO
-  ,WB.[FIRST]
-  ,WB.[SECOND]
-  ,WB.WASTAGE
-  ,WB.TIMEIN
-  ,WB.TIMEOUT
-  ,WB.Z1
-  ,WB.Z2
-  ,WB.WB2
-  ,WB.WBNO
-  ,status.NAME AS [status NAME]
-  ,SHIPPER.NAME AS [SHIPPER NAME]
-  ,SHIPPER.CUSTOMER
-  ,SHIPPER.PT
-  ,SHIPPER.SOURCE
-  ,SHIPPER.LOCATION
-  ,SHIPPER.TRANSP
-FROM
-  WB
-  LEFT OUTER JOIN status
-    ON WB.STATUS = status.CODE
-  LEFT OUTER JOIN SHIPPER
-    ON WB.SHIPPER = SHIPPER.CODE
-WHERE
-  WB.TICKET LIKE @TICKET</CommandText>
-        <rd:DesignerState>
-          <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
-            <AutoJoin>False</AutoJoin>
-            <SelectedColumns>
-              <ColumnExpression ColumnOwner="WB" ColumnName="TICKET" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="LORRY" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="DATE" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="SHIPPER" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="STATUS" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="CHIT_NO" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="FIRST" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="SECOND" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="WASTAGE" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="TIMEIN" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="TIMEOUT" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="Z1" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="Z2" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="WB2" />
-              <ColumnExpression ColumnOwner="WB" ColumnName="WBNO" />
-              <ColumnExpression ColumnOwner="status" ColumnName="NAME" />
-              <ColumnExpression ColumnOwner="SHIPPER" ColumnName="NAME" />
-              <ColumnExpression ColumnOwner="SHIPPER" ColumnName="CUSTOMER" />
-              <ColumnExpression ColumnOwner="SHIPPER" ColumnName="PT" />
-              <ColumnExpression ColumnOwner="SHIPPER" ColumnName="SOURCE" />
-              <ColumnExpression ColumnOwner="SHIPPER" ColumnName="LOCATION" />
-              <ColumnExpression ColumnOwner="SHIPPER" ColumnName="TRANSP" />
-            </SelectedColumns>
-            <Joins>
-              <Join Type="CROSS JOIN" ColumnOwner="WB" />
-              <Join Type="LEFT OUTER JOIN" ColumnOwner="status">
-                <On>
-                  <From ColumnOwner="WB" ColumnName="STATUS" />
-                  <To ColumnOwner="status" ColumnName="CODE" />
-                </On>
-              </Join>
-              <Join Type="LEFT OUTER JOIN" ColumnOwner="SHIPPER">
-                <On>
-                  <From ColumnOwner="WB" ColumnName="SHIPPER" />
-                  <To ColumnOwner="SHIPPER" ColumnName="CODE" />
-                </On>
-              </Join>
-            </Joins>
-            <Filters>
-              <Filter Operator="LIKE" Param="True">
-                <ColumnExpression ColumnOwner="WB" ColumnName="TICKET" />
-              </Filter>
-            </Filters>
-          </QueryDefinition>
-        </rd:DesignerState>
-      </Query>
-      <Fields>
-        <Field Name="TICKET">
-          <DataField>TICKET</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="LORRY">
-          <DataField>LORRY</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DATE">
-          <DataField>DATE</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="SHIPPER">
-          <DataField>SHIPPER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="STATUS">
-          <DataField>STATUS</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CHIT_NO">
-          <DataField>CHIT_NO</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FIRST">
-          <DataField>FIRST</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="SECOND">
-          <DataField>SECOND</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="WASTAGE">
-          <DataField>WASTAGE</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="TIMEIN">
-          <DataField>TIMEIN</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="TIMEOUT">
-          <DataField>TIMEOUT</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="Z1">
-          <DataField>Z1</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Z2">
-          <DataField>Z2</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="WB2">
-          <DataField>WB2</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="WBNO">
-          <DataField>WBNO</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="status_NAME">
-          <DataField>status NAME</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SHIPPER_NAME">
-          <DataField>SHIPPER NAME</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CUSTOMER">
-          <DataField>CUSTOMER</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PT">
-          <DataField>PT</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SOURCE">
-          <DataField>SOURCE</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="LOCATION">
-          <DataField>LOCATION</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TRANSP">
-          <DataField>TRANSP</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
     <DataSet Name="WB2">
       <Query>
-        <DataSourceName>JBP</DataSourceName>
+        <DataSourceName>JBP_UWS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="DateFrom">
+            <Value>=Parameters!DateFrom.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="DateTo">
+            <Value>=Parameters!DateTo.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>SELECT 
     a.TICKET,
     a.LORRY,
@@ -234,6 +60,8 @@ WHERE
 FROM 
     WB AS a
     LEFT OUTER JOIN shipper AS b ON a.SHIPPER = b.code
+WHERE 
+    a.DATE BETWEEN @DateFrom AND @DateTo
 
 UNION ALL
 
@@ -263,6 +91,8 @@ SELECT
 FROM 
     DESPATCH AS a
     LEFT OUTER JOIN shipper AS b ON a.SHIPPER = b.code
+WHERE 
+    a.DATE BETWEEN @DateFrom AND @DateTo
 
 UNION ALL
 
@@ -291,7 +121,9 @@ SELECT
     b.TRANSP
 FROM 
     PR AS a
-    LEFT OUTER JOIN shipper AS b ON a.SHIPPER = b.code</CommandText>
+    LEFT OUTER JOIN shipper AS b ON a.SHIPPER = b.code
+WHERE 
+    a.DATE BETWEEN @DateFrom AND @DateTo</CommandText>
       </Query>
       <Fields>
         <Field Name="TICKET">
@@ -386,7 +218,7 @@ FROM
     </DataSet>
     <DataSet Name="LOGO">
       <Query>
-        <DataSourceName>JBP</DataSourceName>
+        <DataSourceName>JBP_UWS</DataSourceName>
         <CommandText>SELECT
        [CODE]
       ,[NAME]
@@ -1638,6 +1470,7 @@ FROM [dbo].[LOGO]</CommandText>
                           </Style>
                         </Textbox>
                         <ColSpan>14</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -3791,7 +3624,7 @@ FROM [dbo].[LOGO]</CommandText>
             <Top>0.99422in</Top>
             <Left>0.19777in</Left>
             <Height>1.42583in</Height>
-            <Width>6.65193in</Width>
+            <Width>6.65194in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4549,14 +4382,14 @@ FROM [dbo].[LOGO]</CommandText>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.90464in</Height>
+        <Height>2.44631in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>7.74785in</Width>
+      <Width>6.88211in</Width>
       <Page>
         <PageFooter>
           <Height>0.01042in</Height>
@@ -4581,45 +4414,19 @@ FROM [dbo].[LOGO]</CommandText>
   <ReportParameters>
     <ReportParameter Name="Ticket">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>00000001</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>Ticket</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>WB2</DataSetName>
-          <ValueField>TICKET</ValueField>
-          <LabelField>TICKET</LabelField>
-        </DataSetReference>
-      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="PRINT_BY">
       <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>'123'</Value>
-        </Values>
-      </DefaultValue>
+      <Nullable>true</Nullable>
       <Prompt>Print By</Prompt>
     </ReportParameter>
     <ReportParameter Name="DateFrom">
       <DataType>DateTime</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>=Today()</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>Date (From) @[DATE -p dd/mm/yyyy -s false]</Prompt>
     </ReportParameter>
     <ReportParameter Name="DateTo">
       <DataType>DateTime</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>=Today()</Value>
-        </Values>
-      </DefaultValue>
       <Prompt>Date(To) @[DATE -p dd/mm/yyyy -s false]</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -4652,5 +4459,6 @@ FROM [dbo].[LOGO]</CommandText>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://127.0.0.1:8088/ReportServer</rd:ReportServerUrl>
   <rd:ReportID>f2a80442-8b33-4eba-9d40-d01e60ab3315</rd:ReportID>
 </Report>
