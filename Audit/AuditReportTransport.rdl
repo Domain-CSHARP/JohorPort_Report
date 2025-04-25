@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-22T02:40:45.4050644Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-25T08:07:15.9055242Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -47,10 +47,10 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="WFC_WB">
+    <DataSet Name="WFC_TRANSP">
       <Query>
         <DataSourceName>JPB_UWS</DataSourceName>
-        <CommandText>SELECT * FROM WFC_DESPATCH</CommandText>
+        <CommandText>SELECT * FROM WFC_TRANSP</CommandText>
       </Query>
       <Fields>
         <Field Name="PKKEY">
@@ -329,7 +329,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(ISNOTHING(First(Fields!CODE.Value, "WEB_USER")), "", "[" &amp; First(Fields!CODE.Value, "WEB_USER") &amp; "] ") &amp; IIF(ISNOTHING(First(Fields!NAME.Value, "WEB_USER")), "", First(Fields!NAME.Value, "WEB_USER"))</Value>
+                    <Value>=Parameters!PrintBy.Value</Value>
                     <Style>
                       <FontFamily>Arial</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -870,7 +870,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
-            <DataSetName>WFC_WB</DataSetName>
+            <DataSetName>WFC_TRANSP</DataSetName>
             <Top>2.15278cm</Top>
             <Left>0.2cm</Left>
             <Height>1cm</Height>
@@ -930,6 +930,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
     </ReportParameter>
     <ReportParameter Name="PrintBy">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <DefaultValue>
         <Values>
           <Value>1</Value>

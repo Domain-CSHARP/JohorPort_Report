@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-23T00:54:17.0151934Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-25T08:26:33.5230438Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -95,84 +95,6 @@ where ticket is not null and completed = 1
         </Field>
         <Field Name="GateNo">
           <DataField>GateNo</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="GateSuccessRate">
-      <Query>
-        <DataSourceName>JPB_UWS</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@GateNo">
-            <Value>=Parameters!GateNo.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@DateFrom">
-            <Value>=Parameters!DateFrom.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@DateTo">
-            <Value>=Parameters!DateTo.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>SELECT count(is_lpr_success) from (
-	select ticket, CAST(weightout_datetime as DATE) as [date],case when gatein_lpr = gatein_qr then 1 else 0 end as is_lpr_success, 'gate in' as type, GATEIN_GATENO as GateNo
-	from shipper_sub
-	where ticket is not null and completed = 1 and GATEIN_GATENO is not null
-	union
-	select ticket,CAST(weightout_datetime as DATE) as [date], case when gateout_lpr = gateout_qr then 1 else 0 end as is_lpr_success, 'gate out' as type, GATEOUT_GATENO as GateNo
-	from shipper_sub
-	where ticket is not null and completed = 1  and GATEOUT_GATENO is not null
-	union
-	select ticket, CAST(weightout_datetime as DATE) as [date],case when weightin_lpr = weightin_qr then 1 else 0 end as is_lpr_success, 'weight in' as type, WEIGHTIN_WBNO as GateNo 
-	from shipper_sub
-	where ticket is not null and completed = 1
-	union
-	select ticket, CAST(weightout_datetime as DATE) as [date],case when weightout_lpr = weightout_qr then 1 else 0 end as is_lpr_success, 'weight out' as type, WEIGHTOUT_WBNO as GateNo
-	from shipper_sub
-	where ticket is not null and completed = 1
-) as SUB where is_lpr_success = '1' and (GateNo Is NOT NULL OR GateNo = @GateNo) and date between @DateFrom and @DateTo ;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="ID">
-          <DataField />
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="GateTotalTrip">
-      <Query>
-        <DataSourceName>JPB_UWS</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@GateNo">
-            <Value>=Parameters!GateNo.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@DateFrom">
-            <Value>=Parameters!DateFrom.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@DateTo">
-            <Value>=Parameters!DateTo.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>SELECT count(is_lpr_success) from (
-	select ticket, CAST(weightout_datetime as DATE) as [date],case when gatein_lpr = gatein_qr then 1 else 0 end as is_lpr_success, 'gate in' as type, GATEIN_GATENO as GateNo
-	from shipper_sub
-	where ticket is not null and completed = 1 and GATEIN_GATENO is not null
-	union
-	select ticket,CAST(weightout_datetime as DATE) as [date], case when gateout_lpr = gateout_qr then 1 else 0 end as is_lpr_success, 'gate out' as type, GATEOUT_GATENO as GateNo
-	from shipper_sub
-	where ticket is not null and completed = 1  and GATEOUT_GATENO is not null
-	union
-	select ticket, CAST(weightout_datetime as DATE) as [date],case when weightin_lpr = weightin_qr then 1 else 0 end as is_lpr_success, 'weight in' as type, WEIGHTIN_WBNO as GateNo 
-	from shipper_sub
-	where ticket is not null and completed = 1
-	union
-	select ticket, CAST(weightout_datetime as DATE) as [date],case when weightout_lpr = weightout_qr then 1 else 0 end as is_lpr_success, 'weight out' as type, WEIGHTOUT_WBNO as GateNo
-	from shipper_sub
-	where ticket is not null and completed = 1
-) as SUB where (GateNo Is NOT NULL OR GateNo = @GateNo)  and date between @DateFrom and @DateTo ;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="ID">
-          <DataField />
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -389,7 +311,7 @@ where ticket is not null and completed = 1
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIF(ISNOTHING(First(Fields!CODE.Value, "WEB_USER")), "", "[" &amp; First(Fields!CODE.Value, "WEB_USER") &amp; "] ") &amp; IIF(ISNOTHING(First(Fields!NAME.Value, "WEB_USER")), "", First(Fields!NAME.Value, "WEB_USER"))</Value>
+                    <Value>=Parameters!PrintBy.Value</Value>
                     <Style>
                       <FontFamily>Arial</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -843,7 +765,7 @@ where ticket is not null and completed = 1
                     <TablixMember>
                       <Group Name="Details">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!is_lpr_success.Value</GroupExpression>
+                          <GroupExpression>=Fields!date.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                     </TablixMember>
@@ -874,7 +796,7 @@ where ticket is not null and completed = 1
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Mega Booking Sub Summary Report</Value>
+                    <Value>Turn Around KPI Report</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
                       <Color>Brown</Color>
@@ -1699,22 +1621,22 @@ where ticket is not null and completed = 1
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!ID.Value</GroupExpression>
+                      <GroupExpression>=Fields!date.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ID.Value</Value>
+                      <Value>=Fields!date.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>Successful Count</Label>
+                  <Label>=Fields!date.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>ID</Label>
+                  <Label>date</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -1724,7 +1646,7 @@ where ticket is not null and completed = 1
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Fields!ID.Value/Sum(Fields!ID.Value, "GateTotalTrip") * 100</Y>
+                        <Y>=Sum(IIf(Fields!is_lpr_success.Value = 1, 1, 0))/Count(Fields!date.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1747,7 +1669,7 @@ where ticket is not null and completed = 1
                     </ChartDataLabel>
                   </ChartEmptyPoints>
                   <ChartItemInLegend>
-                    <LegendText>Success Rate</LegendText>
+                    <LegendText>Success Rate %</LegendText>
                   </ChartItemInLegend>
                   <ValueAxisName>Primary</ValueAxisName>
                   <CategoryAxisName>Primary</CategoryAxisName>
@@ -1768,6 +1690,7 @@ where ticket is not null and completed = 1
                         <Style>None</Style>
                       </Border>
                       <FontSize>8pt</FontSize>
+                      <Format>d</Format>
                       <Color>#5c5c5c</Color>
                     </Style>
                     <ChartAxisTitle>
@@ -1881,6 +1804,7 @@ where ticket is not null and completed = 1
                         <Style>None</Style>
                       </Border>
                       <FontSize>8pt</FontSize>
+                      <Format>0%</Format>
                       <Color>#5c5c5c</Color>
                     </Style>
                     <ChartAxisTitle>
@@ -1923,7 +1847,7 @@ where ticket is not null and completed = 1
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
+                    <Maximum>1</Maximum>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -2011,7 +1935,7 @@ where ticket is not null and completed = 1
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Chart Title</Caption>
+                <Caption>Turn Around KPI</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2041,11 +1965,11 @@ where ticket is not null and completed = 1
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>GateSuccessRate</DataSetName>
-            <Top>3.25279cm</Top>
-            <Left>0.8616cm</Left>
+            <DataSetName>WFC_SHIPPER_SUB</DataSetName>
+            <Top>3.28807cm</Top>
+            <Left>0.2cm</Left>
             <Height>6.81375cm</Height>
-            <Width>6.97083cm</Width>
+            <Width>20.6cm</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -2078,12 +2002,6 @@ where ticket is not null and completed = 1
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="REPORT_TITLE">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>REPORT_TITLE</Prompt>
-    </ReportParameter>
     <ReportParameter Name="PrintBy">
       <DataType>String</DataType>
       <DefaultValue>
@@ -2111,22 +2029,12 @@ where ticket is not null and completed = 1
       </DefaultValue>
       <Prompt>Date To</Prompt>
     </ReportParameter>
-    <ReportParameter Name="GateNo">
-      <DataType>Integer</DataType>
-      <Nullable>true</Nullable>
-      <Prompt>Gate No</Prompt>
-    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>REPORT_TITLE</ParameterName>
-        </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
@@ -2141,11 +2049,6 @@ where ticket is not null and completed = 1
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>DateTo</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>GateNo</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
