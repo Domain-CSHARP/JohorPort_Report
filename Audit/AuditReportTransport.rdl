@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2025-04-25T08:07:15.9055242Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2025-04-29T06:57:30.9798529Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -135,44 +135,6 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox1">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!REPORT_TITLE.Value</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.5cm</Top>
-            <Left>0.2cm</Left>
-            <Height>0.5cm</Height>
-            <Width>20.6cm</Width>
-            <ZIndex>1</ZIndex>
-            <Visibility>
-              <Hidden>=IIF(ISNOTHING(Parameters!REPORT_TITLE.Value), True, False)</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox2">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -195,7 +157,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>0.2cm</Left>
             <Height>0.4cm</Height>
             <Width>1cm</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -224,7 +186,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>1.2cm</Left>
             <Height>0.4cm</Height>
             <Width>5.40286cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -255,7 +217,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>12.03884cm</Left>
             <Height>0.4cm</Height>
             <Width>2.87042cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -284,7 +246,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>14.94453cm</Left>
             <Height>0.4cm</Height>
             <Width>5.85547cm</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -315,7 +277,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>12.03884cm</Left>
             <Height>0.4cm</Height>
             <Width>2.87042cm</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -344,7 +306,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>14.94453cm</Left>
             <Height>0.4cm</Height>
             <Width>5.85547cm</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -875,7 +837,7 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
             <Left>0.2cm</Left>
             <Height>1cm</Height>
             <Width>20.6cm</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -904,12 +866,6 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="REPORT_TITLE">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>REPORT_TITLE</Prompt>
-    </ReportParameter>
     <ReportParameter Name="DATE_FROM">
       <DataType>DateTime</DataType>
       <DefaultValue>
@@ -944,11 +900,6 @@ WHERE WEB_USER.CODE = @PrintBy</CommandText>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>REPORT_TITLE</ParameterName>
-        </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
